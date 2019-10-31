@@ -43,14 +43,12 @@ const questions = (sql) => inquirer
                         name: 'quantity',
                         message: 'How many???',
                     }]).then(({ product, quantity }) => {
-                        sql.query("UPDATE products" +
-                            "SET stock_quantity = ?" +
-                            "WHERE item_id = ?", [quantity, product], (err, results) => {
-                                if (err) {
-                                    throw new Error(err.message);
-                                }
-                                console.log(results);
-                            })
+                        sql.query('UPDATE products SET stock_quantity = ? WHERE item_id = ?', [quantity, product], (err, results) => {
+                            if (err) {
+                                throw new Error(err.message);
+                            }
+                            console.log(results);
+                        })
                     })
                 });
                 break
